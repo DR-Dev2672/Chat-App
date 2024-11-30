@@ -1,15 +1,20 @@
-const http=require("http")
 const express=require("express")
 const app=express()
+
+
 const path =require("path")
-const {Server} =require("socket.io")
+const http=require("http")
 const server=http.createServer(app)
+//this is use to server this path as static
+app.use(express.static("./public"))
 
 //make frame socket.io
 
-app.use(express.static("./public"))
+const {Server} =require("socket.io")
+
 
 const io=new Server(server)
+ 
 io.on("connection",(socket)=>{
     socket.on("user-message",(message)=>{
       io.emit("message",message)
@@ -19,7 +24,7 @@ io.on("connection",(socket)=>{
 
 })
 
-
+//use to send this file at frontend
 app.get("/",(req,res)=>{
     res.sendFile("/public/index.html")
 })
