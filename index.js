@@ -8,13 +8,19 @@ const server=http.createServer(app)
 //this is use to server this path as static
 app.use(express.static("./public"))
 
+app.use(express.static("./public"))
+
 //make frame socket.io
 
 const {Server} =require("socket.io")
 
 
 const io=new Server(server)
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 01fbe9b8edd5851c57d8ef6d1fa8e0f933d41d54
 io.on("connection",(socket)=>{
     socket.on("user-message",(message)=>{
       io.emit("message",message)
